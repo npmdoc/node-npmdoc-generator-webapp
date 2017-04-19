@@ -56,6 +56,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.generator-webapp.generator-webapp">
+            function <span class="apidocSignatureSpan"></span>generator-webapp
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.generator-webapp.extend">
             function <span class="apidocSignatureSpan">generator-webapp.</span>extend
             <span class="apidocSignatureSpan">(protoProps, staticProps)</span>
@@ -712,6 +721,59 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.generator-webapp" id="apidoc.module.generator-webapp">module generator-webapp</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.generator-webapp.generator-webapp" id="apidoc.element.generator-webapp.generator-webapp">
+        function <span class="apidocSignatureSpan"></span>generator-webapp
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">generator-webapp = function () {
+  var testLocal;
+
+  generators.Base.apply(this, arguments);
+
+  this.option('skip-welcome-message', {
+    desc: 'Skips the welcome message',
+    type: Boolean
+  });
+
+  this.option('skip-install-message', {
+    desc: 'Skips the message after the installation of dependencies',
+    type: Boolean
+  });
+
+  this.option('test-framework', {
+    desc: 'Test framework to be invoked',
+    type: String,
+    defaults: 'mocha'
+  });
+
+  this.option('babel', {
+    desc: 'Use Babel',
+    type: Boolean,
+    defaults: true
+  });
+
+  if (this.options['test-framework'] === 'mocha') {
+    testLocal = require.resolve('generator-mocha/generators/app/index.js');
+  } else if (this.options['test-framework'] === 'jasmine') {
+    testLocal = require.resolve('generator-jasmine/generators/app/index.js');
+  }
+
+  this.composeWith(this.options['test-framework'] + ':app', {
+    options: {
+      'skip-install': this.options['skip-install']
+    }
+  }, {
+    local: testLocal
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>

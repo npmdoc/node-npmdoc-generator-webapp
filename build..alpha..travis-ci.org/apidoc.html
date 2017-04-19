@@ -63,6 +63,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.generator-webapp.generator-webapp">
+            function <span class="apidocSignatureSpan"></span>generator-webapp
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.generator-webapp.extend">
             function <span class="apidocSignatureSpan">generator-webapp.</span>extend
             <span class="apidocSignatureSpan">(protoProps, staticProps)</span>
@@ -719,6 +728,59 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.generator-webapp" id="apidoc.module.generator-webapp">module generator-webapp</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.generator-webapp.generator-webapp" id="apidoc.element.generator-webapp.generator-webapp">
+        function <span class="apidocSignatureSpan"></span>generator-webapp
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">generator-webapp = function () {
+  var testLocal;
+
+  generators.Base.apply(this, arguments);
+
+  this.option(&#x27;skip-welcome-message&#x27;, {
+    desc: &#x27;Skips the welcome message&#x27;,
+    type: Boolean
+  });
+
+  this.option(&#x27;skip-install-message&#x27;, {
+    desc: &#x27;Skips the message after the installation of dependencies&#x27;,
+    type: Boolean
+  });
+
+  this.option(&#x27;test-framework&#x27;, {
+    desc: &#x27;Test framework to be invoked&#x27;,
+    type: String,
+    defaults: &#x27;mocha&#x27;
+  });
+
+  this.option(&#x27;babel&#x27;, {
+    desc: &#x27;Use Babel&#x27;,
+    type: Boolean,
+    defaults: true
+  });
+
+  if (this.options[&#x27;test-framework&#x27;] === &#x27;mocha&#x27;) {
+    testLocal = require.resolve(&#x27;generator-mocha/generators/app/index.js&#x27;);
+  } else if (this.options[&#x27;test-framework&#x27;] === &#x27;jasmine&#x27;) {
+    testLocal = require.resolve(&#x27;generator-jasmine/generators/app/index.js&#x27;);
+  }
+
+  this.composeWith(this.options[&#x27;test-framework&#x27;] + &#x27;:app&#x27;, {
+    options: {
+      &#x27;skip-install&#x27;: this.options[&#x27;skip-install&#x27;]
+    }
+  }, {
+    local: testLocal
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
